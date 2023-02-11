@@ -119,7 +119,8 @@ server.post('/chatgpt', async (request, reply) => {
     }
 });
 
-server.listen({ port: settings.port || 3000 }, (error) => {
+server.listen({ port: settings.port || 3000, host: '0.0.0.0' }, (error) => {
+    console.log(`服务器运行在http://0.0.0.0:${settings.port}`)
     if (error) {
         console.error(error);
         process.exit(1);
