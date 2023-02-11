@@ -1,0 +1,17 @@
+{
+  "name": "chatgptbrowser",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chatgpt": "^3.5.2",
+    "fastify": "^4.13.0",
+    "puppeteer": "^19.6.3"
+  }
+}
