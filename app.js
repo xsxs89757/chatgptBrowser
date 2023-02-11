@@ -48,7 +48,7 @@ for (let i = 0; i < settings.accounts.length; i++) {
         proxyServer: account.proxyServer || account.proxy || undefined,
     });
 
-    api.initSession().then(() => {
+    await api.initSession().then(() => {
         console.log(`Session initialized for account ${i}.`);
         accounts.push(api);
     });
