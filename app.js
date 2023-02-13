@@ -97,8 +97,10 @@ server.post('/chatgpt', async (request, reply) => {
     let error;
     try {
         const parentMessageId = request.body.parent_message_id ? request.body.parent_message_id.toString() : undefined;
-        result = await accounts[currentAccountIndex].sendMessage(subject);
-        console.log(result)
+        result = await accounts[currentAccountIndex].sendMessage(subject, {
+            conversationId,
+            parentMessageId,
+        });
         // ChatGPT ends its response with a newline character, so we need to remove it.
         result.response = result.response.trim();
         if (conversationId) {

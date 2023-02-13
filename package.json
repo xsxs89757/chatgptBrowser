@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chatgpt": "^3.5.2",
+    "chatgpt": "3.5.1",
     "fastify": "^4.13.0",
     "puppeteer": "^19.6.3"
   }
