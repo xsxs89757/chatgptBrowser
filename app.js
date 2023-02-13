@@ -77,6 +77,10 @@ server.post('/chatgpt', async (request, reply) => {
         reply.send({ code: 1, msg: 'No sessions available.' });
         return;
     }
+    const subject = request.body.subject
+    if(!subject){
+        return reply.send({ code: 1, msg: 'subject error' })
+    }
 
     const conversationId = request.body.conversation_id ? request.body.conversation_id.toString() : undefined;
 
@@ -88,15 +92,13 @@ server.post('/chatgpt', async (request, reply) => {
         // If the conversation ID is not in the map, use the next account.
         currentAccountIndex = (currentAccountIndex + 1) % accounts.length;
     }
-
+    
     let result;
     let error;
     try {
         const parentMessageId = request.body.parent_message_id ? request.body.parent_message_id.toString() : undefined;
-        result = await accounts[currentAccountIndex].sendMessage(request.body.message, {
-            conversationId,
-            parentMessageId,
-        });
+        result = await accounts[currentAccountIndex].sendMessage(subject);
+        console.log(result)
         // ChatGPT ends its response with a newline character, so we need to remove it.
         result.response = result.response.trim();
         if (conversationId) {
