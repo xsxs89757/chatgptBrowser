@@ -31,7 +31,7 @@ const conversationsMap = {};
 const base =  `chatgpt{id}@chatgptbatch.uu.me`;
 const accountsMapArr = settings.index.split('-');
 
-for(let i = accountsMapArr[0];i<= accountsMapArr[1];i++) {
+for(let i = parseInt(accountsMapArr[0]);i<= parseInt(accountsMapArr[1]);i++) {
     settings.accounts.push({
         email: base.replace('{id}', i),
         password: 'qazwsx123!@#'
