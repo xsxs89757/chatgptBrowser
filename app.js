@@ -96,7 +96,7 @@ server.post('/chatgpt', async (request, reply) => {
             parentMessageId,
             timeoutMs: 3 * 60 * 1000, 
         });
-
+        console.log(result);
     } catch (e) {
         error = e;
     }
