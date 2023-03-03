@@ -60,7 +60,7 @@ const replyAccessToken = async() => {
 await getAccessToken()
 setInterval( async()=>{
     await getAccessToken()
-}, 4 * 60 * 60 * 1000)
+}, 8 * 60 * 60 * 1000)
 
 
 const server = fastify();
@@ -85,10 +85,12 @@ server.post('/chatgpt', async (request, reply) => {
     let error;
     try{
         const parentMessageId = request.body.parent_message_id ? request.body.parent_message_id.toString() : undefined;
+        
         const api = new ChatGPTUnofficialProxyAPI({
             accessToken: _accessToken,
             apiReverseProxyUrl: proxyUrl[index]
         })
+        
         result = await api.sendMessage(subject, {
             conversationId,
             parentMessageId,
@@ -98,12 +100,11 @@ server.post('/chatgpt', async (request, reply) => {
     } catch (e) {
         error = e;
     }
-
     if (result !== undefined) {
         reply.send({
             content : result.text,
             conversation_id: result.conversationId,
-            parent_message_id : result.parentMessageId,
+            parent_message_id : result.id,
             server: index
         });
     } else {
