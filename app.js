@@ -77,7 +77,7 @@ server.post('/chatgpt', async (request, reply) => {
 
     const proxyUrl = [
         'https://chat.duti.tech/api/conversation',
-        'https://gpt.pawan.krd/backend-api/conversation'
+        // 'https://gpt.pawan.krd/backend-api/conversation'
     ]
     const index = Math.floor((Math.random()*proxyUrl.length))
 
