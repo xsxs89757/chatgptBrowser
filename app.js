@@ -28,10 +28,6 @@ if (fs.existsSync(path)) {
 }
 
 const map = new ExpiryMap(3 * 60 * 1000)
-const api = new ChatGPTAPI({
-    apiKey: settings.openai_api_key,
-    messageStore: map
-});
 
 const server = fastify();
 
@@ -45,6 +41,11 @@ server.post('/chatgpt', async (request, reply) => {
     let error;
     try{
         const parentMessageId = request.body.parent_message_id ? request.body.parent_message_id.toString() : undefined;
+       
+        const api = new ChatGPTAPI({
+            apiKey: settings.openai_api_key,
+            messageStore: map
+        });
         
         result = await api.sendMessage(subject, {
             parentMessageId,
